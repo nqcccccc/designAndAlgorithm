@@ -1,6 +1,6 @@
 import time
 import pylab
-import random
+import myLibrary as lib
 
 # Applies dynamic programming to find the minimum number of coins
 # of denominations d1 < d2 < . . . < dm where d1 = 1 that add up to a
@@ -8,17 +8,6 @@ import random
 # Input: Positive integer n and array D[1..m] of increasing positive
 # integers indicating the coin denominations where D[1]= 1
 # Output: The minimum number of coins that add up to n
-
-# def ChangeMaking(D,n):
-#     m = len(D)-1
-#     F = [0 for _ in range(n+1)]
-#     for j in range(1, n+1):
-#         temp = 9999
-#         for i in range(0, m+1):
-#             if(j >= D[i]):
-#                 temp = min(temp, 1+F[j-D[i]])
-#         F[j] = temp
-#     return F[n]
 
 def ChangeMaking(D,n):
     m = len(D)-1
@@ -32,24 +21,20 @@ def ChangeMaking(D,n):
         F[i] = temp+1
     return F[n]
 
+# A =  [1,2,4] 
+# print(ChangeMaking(A,20))
+# #5
 
-def listGen(n):
-    randomlist = []
-    for i in range(1,n):
-        randomlist.append(i)
-    return randomlist
-
-
-A0 = listGen(10)
-A1 = listGen(100)
-A2 = listGen(200)
-A3 = listGen(300)
-A4 = listGen(400)
-A5 = listGen(500)
-A6 = listGen(600)
-A7 = listGen(700)
-A8 = listGen(800)
-A9 = listGen(900)
+A0 = lib.listGen(10)
+A1 = lib.listGen(100)
+A2 = lib.listGen(200)
+A3 = lib.listGen(300)
+A4 = lib.listGen(400)
+A5 = lib.listGen(500)
+A6 = lib.listGen(600)
+A7 = lib.listGen(700)
+A8 = lib.listGen(800)
+A9 = lib.listGen(900)
 
 #0
 startA0 = time.time()

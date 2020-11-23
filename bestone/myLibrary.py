@@ -20,3 +20,9 @@ def ranGen(n):
         key = random.randint(1,99)
         randomlist.append(key)
     return randomlist
+
+def listGen(n):
+    randomlist = []
+    for i in range(1,n):
+        randomlist.append(i)
+    return randomlist
