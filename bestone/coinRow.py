@@ -16,9 +16,10 @@ def CoinRow(C):
         F[i] = max(C[i]+F[i -2],F[i - 1])
     return F[len(C)-1]
 
-A = [5, 1, 2, 10, 6, 2]
-print(CoinRow(A))
-#10
+# A = [5, 1, 2, 10, 6, 2]
+# print(CoinRow(A))
+# #10
+
 A0 = lib.ranGen(10)
 A1 = lib.ranGen(100)
 A2 = lib.ranGen(200)
@@ -96,5 +97,5 @@ sizeA9 = len(A9)
 pylab.plot([sizeA0,sizeA1,sizeA2,sizeA3,sizeA4,sizeA5,sizeA6,sizeA7,sizeA8,sizeA9],[timeA0,timeA1,timeA2,timeA3,timeA4,timeA5,timeA6,timeA7,timeA8,timeA9],'ro-')
 pylab.title('Coin Row')
 pylab.xlabel('Input size')
-pylab.ylabel('Execution time')
+pylab.ylabel('Execution time (Seconds)')
 pylab.show()
