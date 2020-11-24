@@ -1,4 +1,5 @@
 import random
+from binarytree import tree, bst, heap
 
 class newNode: 
     def __init__(self, data): 
