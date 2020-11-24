@@ -27,16 +27,16 @@ def RobotCoinCollection(C):
 # print(A0)
 # print(RobotCoinCollection(A0))
 # #493
-A0= np.random.randint(1,100,(5,5))
-A1 = np.random.randint(1,100,(10,10))
-A2 = np.random.randint(1,100,(15,15))
-A3 = np.random.randint(1,100,(20,20))
-A4 = np.random.randint(1,100,(25,25))
-A5 = np.random.randint(1,100,(30,30))
-A6 = np.random.randint(1,100,(35,35))
-A7 = np.random.randint(1,100,(40,40))
-A8 = np.random.randint(1,100,(45,45))
-A9 = np.random.randint(1,100,(50,50))
+A0= np.random.randint(0,2,(5,10))
+A1 = np.random.randint(0,2,(100,150))
+A2 = np.random.randint(0,2,(200,250))
+A3 = np.random.randint(0,2,(300,350))
+A4 = np.random.randint(0,2,(400,450))
+A5 = np.random.randint(0,2,(500,550))
+A6 = np.random.randint(0,2,(600,650))
+A7 = np.random.randint(0,2,(700,750))
+A8 = np.random.randint(0,2,(850,800))
+A9 = np.random.randint(0,2,(900,950))
 
 #0
 startA0 = time.time()
@@ -101,7 +101,7 @@ sizeA9 = len(A9)*len(A9[0])
 
 
 # vẽ 3d
-pylab.plot([sizeA0,sizeA1,sizeA2,sizeA3,sizeA4,sizeA5,sizeA6,sizeA7,sizeA8,sizeA9],[timeA0,timeA1,timeA2,timeA3,timeA4,timeA5,timeA6,timeA7,timeA8,timeA9],'ro-')
+pylab.plot([sizeA0,sizeA1,sizeA2,sizeA3,sizeA4,sizeA5,sizeA6,sizeA7,sizeA8,sizeA9],[timeA0,timeA1,timeA2,timeA3,timeA4,timeA5,timeA6,timeA7,timeA8,timeA9],'o-',)
 pylab.title('Robot Coin Collection')
 pylab.xlabel('Input size')
 pylab.ylabel('Execution time (Seconds)')
