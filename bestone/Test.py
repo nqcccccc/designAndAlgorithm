@@ -1,17 +1,78 @@
-from binarytree import tree, bst, heap, Node
-import pylab
+import sys
+import random
 import time
-import myLibrary as lib
+import pylab
 
-# Computes recursively the height of a binary tree
-# Input: A binary tree T
-# Output: The height of T
-def Height(T):
-	if T is None:
-		return -1
-	return max(Height(T.left), Height(T.right))+1
+global N 
+N = 15
+# A utility function to check if a queen can 
+# be placed on board[row][col]. Note that this 
+# function is called when "col" queens are 
+# already placed in columns from 0 to col -1. 
+# So we need to check only left side for 
+# attacking queens 
+def isSafe(board, row, col): 
 
-my_tree = tree(height=2, is_perfect=False)
-print(my_tree)
-print(len(my_tree))
-# print(Height(my_tree))
+	# Check this row on left side 
+	for i in range(col): 
+		if board[row][i] == 1: 
+			return False
+
+	# Check upper diagonal on left side 
+	for i, j in zip(range(row, -1, -1), 
+					range(col, -1, -1)): 
+		if board[i][j] == 1: 
+			return False
+
+	# Check lower diagonal on left side 
+	for i, j in zip(range(row, N, 1), 
+					range(col, -1, -1)): 
+		if board[i][j] == 1: 
+			return False
+	return True
+
+def solveNQUtil(board, col): 
+	
+	# base case: If all queens are placed 
+	# then return true 
+	if col >= N: 
+		return True
+
+	# Consider this column and try placing 
+	# this queen in all rows one by one 
+	for i in range(N): 
+
+		if isSafe(board, i, col): 
+			
+			# Place this queen in board[i][col] 
+			board[i][col] = 1
+
+			# recur to place rest of the queens 
+			if solveNQUtil(board, col + 1) == True: 
+				return True
+
+			# If placing queen in board[i][col 
+			# doesn't lead to a solution, then 
+			# queen from board[i][col] 
+			board[i][col] = 0
+
+	# if the queen can not be placed in any row in 
+	# this colum col then return false 
+	return False
+
+x = []
+y = []
+for i in range(4,15):
+	N = i
+	x.append(i)
+	board = [[0]*i for _ in range(i)]
+	start= time.time()
+	solveNQUtil(board, 0)
+	stop= time.time()
+	y.append(stop-start)
+
+pylab.plot(x,y,'ro-')
+pylab.title("N Queens Algorithim")
+pylab.xlabel('Input size')
+pylab.ylabel('Execution time (Seconds)')
+pylab.show()
