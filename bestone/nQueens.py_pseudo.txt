@@ -1,0 +1,155 @@
+IMPORT sys
+
+IMPORT random
+
+IMPORT time
+
+IMPORT pylab
+
+
+
+global N 
+
+SET N TO 15
+
+# A utility function to check IF a queen can 
+
+# be placed on board[row][col]. Note that this 
+
+# function is called when "col" queens are 
+
+# already placed IN columns from 0 to col -1. 
+
+# So we need to check only left side FOR 
+
+# attacking queens 
+
+DEFINE FUNCTION isSafe(board, row, col): 
+
+
+
+	# Check this row on left side 
+
+	FOR i IN range(col): 
+
+		IF board[row][i] EQUALS 1: 
+
+			RETURN False
+
+
+
+	# Check upper diagonal on left side 
+
+	FOR i, j IN zip(range(row, -1, -1), 
+
+					range(col, -1, -1)): 
+
+		IF board[i][j] EQUALS 1: 
+
+			RETURN False
+
+
+
+	# Check lower diagonal on left side 
+
+	FOR i, j IN zip(range(row, N, 1), 
+
+					range(col, -1, -1)): 
+
+		IF board[i][j] EQUALS 1: 
+
+			RETURN False
+
+	RETURN True
+
+
+
+DEFINE FUNCTION solveNQUtil(board, col): 
+
+	
+
+	# base case: If all queens are placed 
+
+	# then RETURN true 
+
+	IF col >= N: 
+
+		RETURN True
+
+
+
+	# Consider this column and try placing 
+
+	# this queen IN all rows one by one 
+
+	FOR i IN range(N): 
+
+
+
+		IF isSafe(board, i, col): 
+
+			
+
+			# Place this queen IN board[i][col] 
+
+			SET board[i][col] TO 1
+
+
+
+			# recur to place rest of the queens 
+
+			IF solveNQUtil(board, col + 1) EQUALS True: 
+
+				RETURN True
+
+
+
+			# If placing queen IN board[i][col 
+
+			# doesn't lead to a solution, then 
+
+			# queen from board[i][col] 
+
+			SET board[i][col] TO 0
+
+
+
+	# IF the queen can not be placed IN any row IN 
+
+	# this colum col then RETURN false 
+
+	RETURN False
+
+
+
+SET x TO []
+
+SET y TO []
+
+FOR i IN range(4,20):
+
+	SET N TO i
+
+	x.append(i)
+
+	SET board TO [[0]*i FOR _ IN range(i)]
+
+	start= time.time()
+
+	solveNQUtil(board, 0)
+
+	stop= time.time()
+
+	y.append(stop-start)
+
+
+
+pylab.plot(x,y,'ro-')
+
+pylab.title("N Queens Algorithim")
+
+pylab.xlabel('Input size')
+
+pylab.ylabel('Execution time (Seconds)')
+
+pylab.show()
